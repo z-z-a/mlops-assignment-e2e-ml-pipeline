@@ -1,0 +1,10 @@
+2026-07-08 18:38:33,629 - minisweagent - INFO - Loading dataset princeton-nlp/SWE-Bench_Verified, split test...
+2026-07-08 18:38:36,347 - minisweagent - INFO - Instance slice: 500 -> 2 instances
+2026-07-08 18:38:36,348 - minisweagent - INFO - Running on 2 instances...
+2026-07-08 18:38:36,349 - minisweagent - INFO - Building agent config from specs: ['/home/zza/hw3/mlops-assignment-e2e-ml-pipeline/.venv/lib/python3.12/site-packages/minisweagent/config/benchmarks/swebench.yaml']
+2026-07-08 18:38:38,587 - minisweagent.environment - DEBUG - Starting container with command: docker run -d --name minisweagent-07a30512 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest sleep 2h
+2026-07-08 18:38:38,588 - minisweagent.environment - DEBUG - Starting container with command: docker run -d --name minisweagent-d6010a4f -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-13033:latest sleep 2h
+2026-07-08 18:38:38,801 - minisweagent.environment - INFO - Started container minisweagent-d6010a4f with ID 4f00b2faa8646681ef7a95a1c9ca00bacd2ff6ee3d8432e433ba487de7458283
+2026-07-08 18:38:38,808 - minisweagent.environment - INFO - Started container minisweagent-07a30512 with ID a10754305a583be381d17b5d1295a5ce4bc925d3aab2d45027da911f1054d721
+2026-07-08 18:40:22,529 - minisweagent - INFO - Saved trajectory to '/home/zza/hw3/mlops-assignment-e2e-ml-pipeline/runs/run-20260708-183831/run-agent/astropy__astropy-12907/astropy__astropy-12907.traj.json'
+2026-07-08 18:42:51,634 - minisweagent - INFO - Saved trajectory to '/home/zza/hw3/mlops-assignment-e2e-ml-pipeline/runs/run-20260708-183831/run-agent/astropy__astropy-13033/astropy__astropy-13033.traj.json'

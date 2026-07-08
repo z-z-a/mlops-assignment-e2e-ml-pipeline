@@ -1,0 +1,10 @@
+{
+  "run_id": "run-20260708-183831",
+  "config": "config.json",
+  "predictions": "run-agent/preds.json",
+  "trajectories": "run-agent/",
+  "eval_report": "run-eval/nebius__moonshotai__Kimi-K2.6.run-20260708-183831.json",
+  "eval_logs": "run-eval/logs/run_evaluation/run-20260708-183831/",
+  "metrics": "metrics.json",
+  "artifact_uri": null
+}

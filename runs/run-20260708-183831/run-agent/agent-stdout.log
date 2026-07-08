@@ -1,0 +1,37 @@
+👋 This is mini-swe-agent version 2.4.1.
+Check the v2 migration guide at https://klieret.short.gy/mini-v2-migration
+Loading global config from '/home/zza/.config/mini-swe-agent/.env'
+minisweagent: INFO: Results will be saved to                                    
+/home/zza/hw3/mlops-assignment-e2e-ml-pipeline/runs/run-20260708-183831/run-agen
+t                                                                               
+Logging to '/home/zza/hw3/mlops-assignment-e2e-ml-pipeline/runs/run-20260708-183831/run-agent/minisweagent.log'
+minisweagent: INFO: Loading dataset princeton-nlp/SWE-Bench_Verified, split     
+test...                                                                         
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+minisweagent: INFO: Instance slice: 500 -> 2 instances                          
+minisweagent: INFO: Running on 2 instances...                                   
+minisweagent: INFO: Building agent config from specs:                           
+['/home/zza/hw3/mlops-assignment-e2e-ml-pipeline/.venv/lib/python3.12/site-packa
+ges/minisweagent/config/benchmarks/swebench.yaml']                              
+minisweagent.environment: DEBUG: Starting container with command: docker run -d 
+--name minisweagent-07a30512 -w /testbed --rm                                   
+docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest sleep 2h  
+minisweagent.environment: DEBUG: Starting container with command: docker run -d 
+--name minisweagent-d6010a4f -w /testbed --rm                                   
+docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-13033:latest sleep 2h  
+minisweagent.environment: INFO: Started container minisweagent-d6010a4f with ID 
+4f00b2faa8646681ef7a95a1c9ca00bacd2ff6ee3d8432e433ba487de7458283                
+minisweagent.environment: INFO: Started container minisweagent-07a30512 with ID 
+a10754305a583be381d17b5d1295a5ce4bc925d3aab2d45027da911f1054d721                
+minisweagent: INFO: Saved trajectory to                                         
+'/home/zza/hw3/mlops-assignment-e2e-ml-pipeline/runs/run-20260708-183831/run-age
+nt/astropy__astropy-12907/astropy__astropy-12907.traj.json'                     
+minisweagent: INFO: Saved trajectory to                                         
+'/home/zza/hw3/mlops-assignment-e2e-ml-pipeline/runs/run-20260708-183831/run-age
+nt/astropy__astropy-13033/astropy__astropy-13033.traj.json'                     
+  Overall Progress ($0.00) ━━━━━━━━━━━━━━━━━━━━━━━ 2/2 100% 0:04:15 eta: 0:00:00
+┏━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Exit Status ┃ Count ┃ Most recent instances                                  ┃
+┡━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Submitted   │     2 │ astropy__astropy-13033, astropy__astropy-12907         │
+└─────────────┴───────┴────────────────────────────────────────────────────────┘
