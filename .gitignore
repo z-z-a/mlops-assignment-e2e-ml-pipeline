@@ -10,3 +10,14 @@ __pycache__
 
 mini-swe-agent/
 SWE-bench/
+
+# pipeline outputs & local storage backends (keep a curated sample run only)
+/runs/
+/minio-data/
+/mlflow-data/
+/mlartifacts/
+/mlflow.db
+
+# airflow compose working dirs
+/config/
+/plugins/
