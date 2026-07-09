@@ -179,10 +179,15 @@ services:
     # Must be >= the mlflow version that created ./mlflow-data/mlflow.db
     # (the Phase 2 standalone used the project venv's mlflow — check with
     # `uv run mlflow --version` and pin MLFLOW_IMAGE in .env accordingly).
-    image: ${MLFLOW_IMAGE:-ghcr.io/mlflow/mlflow:v3.4.0}
+    image: ${MLFLOW_IMAGE:-ghcr.io/mlflow/mlflow:v3.14.0}
     # Artifacts live on the local volume (no boto3/pip needed at startup —
     # runtime pip installs proved fragile). Full run folders go to MinIO via
     # the pipeline's upload_artifacts task; MLflow only stores small jsons.
+    environment:
+      # MLflow 3.x DNS-rebinding protection rejects non-localhost Host headers;
+      # allow the compose-internal hostname (this list REPLACES the default,
+      # so localhost must be re-included for the port-forwarded browser UI).
+      MLFLOW_SERVER_ALLOWED_HOSTS: "mlflow,mlflow:5000,localhost,localhost:5000,127.0.0.1,127.0.0.1:5000"
     command: >
       mlflow server --host 0.0.0.0 --port 5000
       --backend-store-uri sqlite:////mlflow/mlflow.db
