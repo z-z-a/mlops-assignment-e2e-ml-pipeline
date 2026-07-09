@@ -165,27 +165,25 @@ services:
     depends_on:
       minio:
         condition: service_healthy
-    entrypoint: >
-      sh -c "mc alias set local http://minio:9000 ${AWS_ACCESS_KEY_ID:-minioadmin} ${AWS_SECRET_ACCESS_KEY:-minioadmin} &&
-             mc mb -p local/${S3_BUCKET:-mlops-agent-eval-runs} &&
-             mc mb -p local/mlflow-artifacts"
+    entrypoint:
+      - sh
+      - -c
+      - >-
+        mc alias set local http://minio:9000
+        ${AWS_ACCESS_KEY_ID:-minioadmin} ${AWS_SECRET_ACCESS_KEY:-minioadmin}
+        && mc mb -p local/${S3_BUCKET:-mlops-agent-eval-runs}
 
   # --------------------------------------------------------------- tracking --
 
   mlflow:
     image: ghcr.io/mlflow/mlflow:v2.16.2
-    depends_on:
-      minio:
-        condition: service_healthy
-    environment:
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-minioadmin}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-minioadmin}
-      MLFLOW_S3_ENDPOINT_URL: http://minio:9000
+    # Artifacts live on the local volume (no boto3/pip needed at startup —
+    # runtime pip installs proved fragile). Full run folders go to MinIO via
+    # the pipeline's upload_artifacts task; MLflow only stores small jsons.
     command: >
-      sh -c "pip install --quiet boto3 &&
-             mlflow server --host 0.0.0.0 --port 5000
-             --backend-store-uri sqlite:////mlflow/mlflow.db
-             --artifacts-destination s3://mlflow-artifacts/"
+      mlflow server --host 0.0.0.0 --port 5000
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --artifacts-destination /mlflow/artifacts
     ports:
       - "5000:5000"
     volumes:
