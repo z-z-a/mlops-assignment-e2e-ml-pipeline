@@ -176,7 +176,10 @@ services:
   # --------------------------------------------------------------- tracking --
 
   mlflow:
-    image: ghcr.io/mlflow/mlflow:v2.16.2
+    # Must be >= the mlflow version that created ./mlflow-data/mlflow.db
+    # (the Phase 2 standalone used the project venv's mlflow — check with
+    # `uv run mlflow --version` and pin MLFLOW_IMAGE in .env accordingly).
+    image: ${MLFLOW_IMAGE:-ghcr.io/mlflow/mlflow:v3.4.0}
     # Artifacts live on the local volume (no boto3/pip needed at startup —
     # runtime pip installs proved fragile). Full run folders go to MinIO via
     # the pipeline's upload_artifacts task; MLflow only stores small jsons.
