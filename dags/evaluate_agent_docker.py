@@ -15,7 +15,8 @@ Notes:
 - Airflow talks to the host Docker daemon through /var/run/docker.sock, so
   DockerOperator containers are SIBLINGS on the host: every Mount source must be
   a host-absolute path (hence HOST_PROJECT_DIR).
-- run_eval mounts the docker socket itself because the SWE-bench harness spawns
+- run_agent and run_eval both mount the docker socket: mini-swe-agent sandboxes
+  each instance in a docker container, and the SWE-bench harness spawns
   per-instance test containers.
 - Containers join the compose network (DOCKER_NETWORK) so they can reach
   http://minio:9000 and http://mlflow:5000 by service name.
@@ -154,6 +155,7 @@ def evaluate_agent_docker():
         "{% endif %}"
         f" 2>&1 | tee {CONTAINER_RUNS}/{{{{ cfg['run_id'] }}}}/run-agent/agent-stdout.log; "
         f"test -f {CONTAINER_RUNS}/{{{{ cfg['run_id'] }}}}/run-agent/preds.json",
+        docker_sock=True,  # mini-swe-agent sandboxes each instance in a docker container
     )
 
     run_eval = _docker_task(
