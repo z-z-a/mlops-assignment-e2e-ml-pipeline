@@ -1,0 +1,26 @@
+diff --git a/astropy/timeseries/core.py b/astropy/timeseries/core.py
+index c279f35f8..3d3379b27 100644
+--- a/astropy/timeseries/core.py
++++ b/astropy/timeseries/core.py
+@@ -76,9 +76,18 @@ class BaseTimeSeries(QTable):
+ 
+             elif self.colnames[:len(required_columns)] != required_columns:
+ 
+-                raise ValueError("{} object is invalid - expected '{}' "
+-                                 "as the first column{} but found '{}'"
+-                                 .format(self.__class__.__name__, required_columns[0], plural, self.colnames[0]))
++                if self.colnames[:len(required_columns)] == required_columns[:len(self.colnames)]:
++                    # First N columns match, but there aren't enough columns
++                    present = [repr(colname) for colname in self.colnames]
++                    raise ValueError("{} object is invalid - expected '{}' "
++                                     "as the first column{} but time series has only {} column{}: {}"
++                                     .format(self.__class__.__name__, required_columns[0], plural,
++                                             len(self.colnames), 's' if len(self.colnames) > 1 else '',
++                                             ', '.join(present) if present else '(none)'))
++                else:
++                    raise ValueError("{} object is invalid - expected '{}' "
++                                     "as the first column{} but found '{}'"
++                                     .format(self.__class__.__name__, required_columns[0], plural, self.colnames[0]))
+ 
+             if (self._required_columns_relax
+                     and self._required_columns == self.colnames[:len(self._required_columns)]):

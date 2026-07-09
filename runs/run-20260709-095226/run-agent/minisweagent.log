@@ -1,0 +1,50 @@
+2026-07-09 09:52:34,628 - minisweagent - INFO - Loading dataset princeton-nlp/SWE-Bench_Verified, split test...
+2026-07-09 09:52:39,054 - minisweagent - INFO - Instance slice: 500 -> 2 instances
+2026-07-09 09:52:39,056 - minisweagent - INFO - Running on 2 instances...
+2026-07-09 09:52:39,056 - minisweagent - INFO - Building agent config from specs: ['/mlops-assignment/.venv/lib/python3.14/site-packages/minisweagent/config/benchmarks/swebench.yaml']
+2026-07-09 09:52:43,593 - minisweagent.environment - DEBUG - Starting container with command: docker run -d --name minisweagent-9a392650 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest sleep 2h
+2026-07-09 09:52:43,594 - minisweagent.environment - DEBUG - Starting container with command: docker run -d --name minisweagent-e710d2c7 -w /testbed --rm docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-13033:latest sleep 2h
+2026-07-09 09:52:43,612 - minisweagent - ERROR - Error processing instance astropy__astropy-13033: Command '['docker', 'run', '-d', '--name', 'minisweagent-e710d2c7', '-w', '/testbed', '--rm', 'docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-13033:latest', 'sleep', '2h']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/mlops-assignment/.venv/lib/python3.14/site-packages/minisweagent/run/benchmarks/swebench.py", line 146, in process_instance
+    env = get_sb_environment(config, instance)
+  File "/mlops-assignment/.venv/lib/python3.14/site-packages/minisweagent/run/benchmarks/swebench.py", line 88, in get_sb_environment
+    env = get_environment(env_config)
+  File "/mlops-assignment/.venv/lib/python3.14/site-packages/minisweagent/environments/__init__.py", line 33, in get_environment
+    return get_environment_class(environment_class)(**config)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/mlops-assignment/.venv/lib/python3.14/site-packages/minisweagent/environments/docker.py", line 59, in __init__
+    self._start_container()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/mlops-assignment/.venv/lib/python3.14/site-packages/minisweagent/environments/docker.py", line 91, in _start_container
+    result = subprocess.run(
+        cmd,
+    ...<3 lines>...
+        check=True,
+    )
+  File "/root/.local/share/uv/python/cpython-3.14.6-linux-x86_64-gnu/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['docker', 'run', '-d', '--name', 'minisweagent-e710d2c7', '-w', '/testbed', '--rm', 'docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-13033:latest', 'sleep', '2h']' returned non-zero exit status 1.
+2026-07-09 09:52:43,613 - minisweagent - ERROR - Error processing instance astropy__astropy-12907: Command '['docker', 'run', '-d', '--name', 'minisweagent-9a392650', '-w', '/testbed', '--rm', 'docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest', 'sleep', '2h']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/mlops-assignment/.venv/lib/python3.14/site-packages/minisweagent/run/benchmarks/swebench.py", line 146, in process_instance
+    env = get_sb_environment(config, instance)
+  File "/mlops-assignment/.venv/lib/python3.14/site-packages/minisweagent/run/benchmarks/swebench.py", line 88, in get_sb_environment
+    env = get_environment(env_config)
+  File "/mlops-assignment/.venv/lib/python3.14/site-packages/minisweagent/environments/__init__.py", line 33, in get_environment
+    return get_environment_class(environment_class)(**config)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/mlops-assignment/.venv/lib/python3.14/site-packages/minisweagent/environments/docker.py", line 59, in __init__
+    self._start_container()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/mlops-assignment/.venv/lib/python3.14/site-packages/minisweagent/environments/docker.py", line 91, in _start_container
+    result = subprocess.run(
+        cmd,
+    ...<3 lines>...
+        check=True,
+    )
+  File "/root/.local/share/uv/python/cpython-3.14.6-linux-x86_64-gnu/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['docker', 'run', '-d', '--name', 'minisweagent-9a392650', '-w', '/testbed', '--rm', 'docker.io/swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest', 'sleep', '2h']' returned non-zero exit status 1.

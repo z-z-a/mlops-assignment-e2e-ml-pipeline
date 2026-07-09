@@ -11,12 +11,23 @@ __pycache__
 mini-swe-agent/
 SWE-bench/
 
-# pipeline outputs & local storage backends (keep a curated sample run only)
-/runs/
+# local storage backends (never committed — evidence lives in runs/ + screenshots)
 /minio-data/
 /mlflow-data/
 /mlartifacts/
 /mlflow.db
+
+# runs: ignored by default; whitelist the curated evidence runs referenced in REPORT.md
+/runs/*
+!/runs/run-20260708-174849/
+!/runs/run-20260708-180037/
+!/runs/run-20260708-182650/
+!/runs/run-20260708-183831/
+!/runs/run-20260708-193808/
+!/runs/run-20260709-095226/
+!/runs/run-20260709-100409/
+!/runs/run-20260709-114033/
+!/runs/run-20260709-115838/
 
 # airflow compose working dirs
 /config/

@@ -1,0 +1,14 @@
+{
+  "run_id": "run-20260709-114033",
+  "created_at": "2026-07-09T11:40:33.647179+00:00",
+  "split": "test",
+  "subset": "verified",
+  "dataset_name": "princeton-nlp/SWE-bench_Verified",
+  "workers": 4,
+  "model": "nebius/moonshotai/Kimi-K2.6",
+  "task_slice": "0:2",
+  "cost_limit": null,
+  "airflow_dag_run_id": "manual__2026-07-09T11:40:32.746272+00:00",
+  "executor": "DockerOperator",
+  "image": "agent-eval:latest"
+}
